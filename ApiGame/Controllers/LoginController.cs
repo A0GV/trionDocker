@@ -15,7 +15,8 @@ public class LoginController : ControllerBase
         _connectionString = connectionString;
     }
 
-    [HttpGet(Name = "VerifyPassAndUser")]
+    // Changed from [HttpGet(Name = "VerifyPassAndUser")] to add an explicit route
+    [HttpGet("login")]
     public ActionResult<int?> Get(string user, string contrasena)
     {
         int? userId = CheckCredentials(user, contrasena);
@@ -24,6 +25,13 @@ public class LoginController : ControllerBase
             return Ok(userId);
         }
         return Unauthorized("Invalid credentials");
+    }
+
+    // Also add a default route to handle the /Login directly
+    [HttpGet]
+    public ActionResult<int?> GetLogin(string user, string contrasena)
+    {
+        return Get(user, contrasena);
     }
 
     private int? CheckCredentials(string user, string contrasena)
