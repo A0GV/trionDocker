@@ -7,11 +7,11 @@ using System.Data;
 namespace ApiGame.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class manageCurrency : ControllerBase
+public class ManageCurrencyController : ControllerBase
 {
     private readonly string connectionString;
 
-    public manageCurrency(string connectionString)
+    public ManageCurrencyController(string connectionString)
     {
         this.connectionString = connectionString;
     }

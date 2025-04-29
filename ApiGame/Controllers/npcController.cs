@@ -8,11 +8,11 @@ namespace ApiGame.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class npcController : ControllerBase
+    public class NpcController : ControllerBase
     {
         private readonly string connectionString;
 
-        public npcController(string connectionString)
+        public NpcController(string connectionString)
         {
             this.connectionString = connectionString;
         }

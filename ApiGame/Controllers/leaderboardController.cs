@@ -7,11 +7,11 @@ using System.Data;
 namespace ApiGame.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class leaderboardController : ControllerBase
+public class LeaderboardController : ControllerBase
 {
     private readonly string connectionString;
 
-    public leaderboardController(string connectionString)
+    public LeaderboardController(string connectionString)
     {
         this.connectionString = connectionString;
     }

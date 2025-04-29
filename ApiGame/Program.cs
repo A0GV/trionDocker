@@ -46,6 +46,10 @@ app.UseCors("AllowAllOrigins");
 
 app.UseAuthorization();
 
+// Add a root endpoint that redirects to Swagger
+app.MapGet("/", () => Results.Redirect("/swagger"));
+
+// Configure controller routes with case insensitive matching
 app.MapControllers();
 
 app.Run();
