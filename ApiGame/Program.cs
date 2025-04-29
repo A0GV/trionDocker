@@ -24,25 +24,31 @@ builder.Services.AddSingleton<string>(serviceProvider =>
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "OxxoGame API",
+        Version = "v1",
+        Description = "API para el juego de Oxxo"
+    });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Siempre habilitar Swagger, sin importar el entorno
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-else
-{
-    // In production, still make Swagger available
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "OxxoGame API v1");
+    c.RoutePrefix = "swagger";
+});
 
 // Usar la política de CORS configurada
 app.UseCors("AllowAllOrigins");
+
+// Asegurar que UseRouting se llame antes de UseEndpoints
+app.UseRouting();
 
 app.UseAuthorization();
 
