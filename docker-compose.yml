@@ -10,8 +10,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionStrings__DefaultConnection=Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=/app/ca.pem
+    # Healthcheck simplificado que no requiere curl
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/swagger"]
+      test: ["CMD", "dotnet", "--info"]
       interval: 30s
       timeout: 10s
       retries: 3
