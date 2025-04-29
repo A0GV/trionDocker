@@ -8,7 +8,12 @@ namespace ApiGame.Controllers
     [Route("[controller]")]
     public class CapturaController : ControllerBase
     {
-        private readonly string connectionString = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=OxxoWeb/ca.pem";
+        private readonly string connectionString;
+
+        public CapturaController(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
 
         // GET: /Captura/tiendas_usuario/{idUsuario}
         [HttpGet("tiendas_usuario/{idUsuario}")]

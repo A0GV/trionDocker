@@ -9,13 +9,18 @@ namespace ApiGame.Controllers;
 [Route("[controller]")]
 public class leaderboardController : ControllerBase
 {
-    private readonly string connection = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
+    private readonly string connectionString;
+
+    public leaderboardController(string connectionString)
+    {
+        this.connectionString = connectionString;
+    }
 
     [HttpGet("GetLeaders")]
     public IEnumerable<Leadearboard> GetLeaders()
     {
         var personas = new List<Leadearboard>();
-        using var conexion = new MySqlConnection(connection);
+        using var conexion = new MySqlConnection(connectionString);
         conexion.Open();
         MySqlCommand cmd = new MySqlCommand(
             @"select u.nombre, u.apellido_pat, sum(h.exp) as `exp`  from usuario u 

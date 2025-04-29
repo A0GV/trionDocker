@@ -9,12 +9,18 @@ namespace ApiGame.Controllers;
 [Route("[controller]")]
 public class manageCurrency : ControllerBase
 {
+    private readonly string connectionString;
+
+    public manageCurrency(string connectionString)
+    {
+        this.connectionString = connectionString;
+    }
+
     [HttpGet("GetDaysPlayed")]
     // Regresa días jugados basado en id_usuario del jugador y el id_juego que está jugando
     public int GetDiasJugado(int id_logged, int id_jugando)
     {
-        string conection = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
-        using var conexion = new MySqlConnection(conection);
+        using var conexion = new MySqlConnection(connectionString);
         conexion.Open();
 
         // Comando
@@ -45,8 +51,7 @@ public class manageCurrency : ControllerBase
     // Agrega datos del juego usando el usuario activo
     public void AgregarDatosJuego([FromForm] datosJuego datos)
     {
-        string conection = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
-        using var conexion = new MySqlConnection(conection);
+        using var conexion = new MySqlConnection(connectionString);
         conexion.Open();
 
        
@@ -80,8 +85,7 @@ public class manageCurrency : ControllerBase
     // Regresa elotes totales de usuario, y 0 si no ha jugado antes
     public int GetElotesTotal(int id_logged)
     {
-        string conection = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
-        using var conexion = new MySqlConnection(conection);
+        using var conexion = new MySqlConnection(connectionString);
         conexion.Open();
 
         // Comando
@@ -112,8 +116,7 @@ public class manageCurrency : ControllerBase
     // Regresa exp de usuario y 0 si no ha jugado antes
     public int GetExpTotal(int id_logged)
     {
-        string conection = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
-        using var conexion = new MySqlConnection(conection);
+        using var conexion = new MySqlConnection(connectionString);
         conexion.Open();
 
         // Comando
@@ -144,8 +147,7 @@ public class manageCurrency : ControllerBase
     // Regresa racha consecutiva
     public int GetRacha(int id_logged)
     {
-        string conection = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
-        using var conexion = new MySqlConnection(conection);
+        using var conexion = new MySqlConnection(connectionString);
         conexion.Open();
 
         // Comando

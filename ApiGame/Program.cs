@@ -14,14 +14,17 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Add connection string service
+builder.Services.AddSingleton<string>(serviceProvider =>
+{
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    return configuration.GetConnectionString("DefaultConnection") ?? 
+           "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ca.pem";
+});
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = 7119; // Puerto definido en launchSettings https
-});
 
 var app = builder.Build();
 
@@ -31,11 +34,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // In production, still make Swagger available
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Usar la política de CORS configurada
 app.UseCors("AllowAllOrigins");
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

@@ -6,9 +6,14 @@ namespace ApiGame.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PreguntaController : ControllerBase
+public class EnemigosController : ControllerBase
 {
-    private readonly string connectionString = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
+    private readonly string connectionString;
+
+    public EnemigosController(string connectionString)
+    {
+        this.connectionString = connectionString;
+    }
 
     [HttpGet("GetPreguntasEnemigo")]
     public IEnumerable<Enemigos> GetPreguntasEnemigo()

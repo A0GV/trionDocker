@@ -8,7 +8,12 @@ namespace ApiGame.Controllers;
 [Route("[controller]")]
 public class LoginController : ControllerBase
 {
-    private readonly string _connectionString = "Server=construcciondesoftwate-databaselibroprueba.i.aivencloud.com;Port=15400;Database=oxxodb;Uid=avnadmin;Pwd=AVNS_EbD2wE2Jb0yXJYlPLsE;SslMode=Required;SslCa=ApiGame/ca.pem";
+    private readonly string _connectionString;
+
+    public LoginController(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
 
     [HttpGet(Name = "VerifyPassAndUser")]
     public ActionResult<int?> Get(string user, string contrasena)
