@@ -13,7 +13,10 @@ RUN dotnet publish ApiGame/ApiGame.csproj -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build-env /app/out .
+
+# Copy the SSL certificate and ensure it has correct permissions
 COPY ApiGame/ca.pem ./ca.pem
+RUN chmod 644 ./ca.pem
 
 # Expose port
 EXPOSE 8080
