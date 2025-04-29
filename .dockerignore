@@ -1,0 +1,22 @@
+# Directorios de compilación y binarios
+**/bin/
+**/obj/
+**/out/
+**/.vs/
+**/.vscode/
+
+# Archivos de logs
+**/*.log
+
+# Sistema y archivos temporales
+**/.DS_Store
+**/.idea/
+**/node_modules/
+**/.git/
+**/.gitignore
+
+# Archivos específicos de desarrollo
+**/*.user
+**/*.userosscache
+**/*.dbmdl
+**/*.jfm
